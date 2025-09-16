@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinas Pemadam Kebakaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        /* Sembunyikan semua bagian konten secara default */
+        .content-section {
+            display: none;
+        }
+        /* Tampilkan hanya bagian konten yang memiliki kelas 'active' */
+        .content-section.active {
+            display: block;
+        }
+        #beranda {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: -1;
+        }
+        #hero-text-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 900px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-red-700 shadow-md rounded-b-lg fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center text-white">
+            <a href="#" class="text-2xl font-extrabold tracking-wide">DAMKAR MUNA</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#beranda" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Beranda</a>
+                <a href="#galeri" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Galeri</a>
+                <a href="#kontak" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Kontak</a>
+                <a href="#visi-misi" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Visi Misi</a>
+                <a href="#pegawai" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Pegawai</a>
+                <a href="#dasar-hukum" class="nav-link hover:text-red-300 transition duration-300 ease-in-out font-medium">Dasar Hukum</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white hover:text-red-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden bg-red-800 border-t border-red-900" style="display: none;">
+            <a href="#beranda" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Beranda</a>
+            <a href="#galeri" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Galeri</a>
+            <a href="#kontak" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Kontak</a>
+            <a href="#visi-misi" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Visi Misi</a>
+            <a href="#pegawai" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Pegawai</a>
+            <a href="#dasar-hukum" class="nav-link block py-2 px-4 text-sm text-white hover:bg-red-700">Dasar Hukum</a>
+        </div>
+    </header>
+
+    <!-- Main Content Sections -->
+    <main class="flex-grow">
+        <!-- Beranda Section (Default) -->
+        <section id="beranda" class="content-section active">
+            <!-- 3D Background Canvas -->
+            <canvas id="bg-canvas"></canvas>
+            
+            <!-- Text Overlay -->
+            <div id="hero-text-container" class="relative z-10 text-white text-center py-20 px-4 mb-8">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 text-orange-400" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">SELAMAT DATANG DI DINAS PEMADAM KEBAKARAN KABUPATEN MUNA</h1>
+                <p class="text-lg sm:text-xl font-medium mb-6 text-orange-400" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Kami berdedikasi untuk melindungi dan melayani masyarakat dari bahaya kebakaran dan bencana lainnya.</p>
+                <div class="space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#kontak" class="nav-link bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out shadow-lg">Hubungi Kami</a>
+                    <a href="#visi-misi" class="nav-link bg-transparent border-2 border-white hover:bg-white hover:text-red-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out">Tentang Kami</a>
+                </div>
+                <div class="mt-12 text-center">
+                    <h2 class="text-5xl sm:text-6xl font-extrabold tracking-widest leading-none text-orange-400" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">PANTANG PULANG SEBELUM PADAM</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri Section -->
+        <section id="galeri" class="content-section container mx-auto px-4 py-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Galeri Kegiatan</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/cc0000/ffffff?text=Aksi%20Pemadaman" alt="Aksi Pemadaman Kebakaran" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-gray-700 font-medium">Petugas sedang berjuang memadamkan api.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/cc0000/ffffff?text=Tim%20Penyelamat" alt="Tim Penyelamat" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-gray-700 font-medium">Tim penyelamat sedang melakukan evakuasi korban.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/600x400/cc0000/ffffff?text=Pelatihan%20Petugas" alt="Pelatihan Petugas" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-gray-700 font-medium">Sesi pelatihan rutin untuk meningkatkan kesiapsiagaan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak Section -->
+        <section id="kontak" class="content-section container mx-auto px-4 py-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Hubungi Kami</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Informasi Kantor</h3>
+                        <p class="text-gray-600 mb-1">Jl. Contoh No. 123, Kota Contoh</p>
+                        <p class="text-gray-600 mb-1">Kode Pos 12345</p>
+                        <p class="text-gray-600 mb-1">Telepon: (021) 1234567</p>
+                        <p class="text-gray-600">Email: info@damkar.co.id</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Formulir Kontak</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Nama Lengkap" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <input type="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <textarea rows="4" placeholder="Pesan Anda" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                            <button type="submit" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-md transition duration-300">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visi dan Misi Section -->
+        <section id="visi-misi" class="content-section container mx-auto px-4 py-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Visi & Misi</h2>
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-2">Visi</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Menjadi institusi pemadam kebakaran yang profesional, modern, dan terpercaya dalam mewujudkan keselamatan masyarakat dari bahaya kebakaran dan bencana.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Misi</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Melindungi jiwa dan harta benda masyarakat dari ancaman kebakaran, ledakan, dan bencana lainnya.</li>
+                        <li>Meningkatkan kesiapsiagaan dan respons cepat dalam setiap operasi penanggulangan kebakaran dan penyelamatan.</li>
+                        <li>Melakukan edukasi dan sosialisasi kepada masyarakat tentang pentingnya pencegahan kebakaran.</li>
+                        <li>Mengembangkan profesionalisme sumber daya manusia dan pemanfaatan teknologi terkini dalam pelayanan.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pegawai Section -->
+        <section id="pegawai" class="content-section container mx-auto px-4 py-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Daftar Pegawai</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Daftar Pegawai Baru -->
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Tajuddin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">TAJUDDIN, S.Pd</h3>
+                        <p class="text-gray-600">Kepala Dinas</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Riktamin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE RIKTAMIN, S.ST</h3>
+                        <p class="text-gray-600">Sekretaris</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Muhammad Ikhsanuddin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">drh. LA ODE MUHAMMAD IKHSANUDDIN</h3>
+                        <p class="text-gray-600">Kasubbag perencana dan keuangan</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Ishak" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE ISHAK, S.Sos</h3>
+                        <p class="text-gray-600">Kabid Pemadaman Penyelamatan sarana dan Prasarana</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Muhamad Mushawir" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE MUHAMAD MUSHAWIR, SH</h3>
+                        <p class="text-gray-600">Kabid Pencegahan</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Yamin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">YAMIN, A.Md</h3>
+                        <p class="text-gray-600">Kasi Pemadam Kebakaran</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Halimin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">HALIMIN, S.Pt</h3>
+                        <p class="text-gray-600">Kasi Penyelamatan dan Evakuasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Risal Hidayat" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE RISAL HIDAYAT, SP</h3>
+                        <p class="text-gray-600">Kasi pencegahan dan Inspeksi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Muhammad Aswan" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">MUHAMMAD ASWAN, SP</h3>
+                        <p class="text-gray-600">Kasi Pemberdayaan Masyarakat dan Dunia Usaha</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Iskandar" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">ISKANDAR, SP</h3>
+                        <p class="text-gray-600">Analis Kebakaran</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Ifu" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE IFU</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Jumadin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">JUMADIN</h3>
+                        <p class="text-gray-600">Bendahara</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Emsan Muzakkir" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">EMSAN MUZAKKIR</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Saharudin" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE SAHARUDIN</h3>
+                        <p class="text-gray-600">Penyusun barang Infentaris</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Amir" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">AMIR</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Abdul Said" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">ABDUL SAID</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Antimasa" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">ANTIMASA</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Darwis" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">DARWIS</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Muhamad Munawih" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE MUHAMAD MUNAWIH</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="La Ode Taslim" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">LA ODE TASLIM</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Ediy Kuntara" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">EDIY KUNTARA</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Pardi" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">PARDI</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/d1d5db/4b5563?text=Foto" alt="Muhamad Fajri" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <h3 class="font-bold text-lg">MUHAMAD FAJRI, S.Si</h3>
+                        <p class="text-gray-600">Pengolah Data dan Informasi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dasar Hukum Section -->
+        <section id="dasar-hukum" class="content-section container mx-auto px-4 py-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Dasar Hukum</h2>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Undang-Undang Nomor 24 Tahun 2007 tentang Penanggulangan Bencana.</li>
+                    <li>Peraturan Pemerintah Nomor 36 Tahun 2005 tentang Peraturan Pelaksanaan Undang-Undang Nomor 24 Tahun 2007.</li>
+                    <li>Keputusan Menteri Dalam Negeri Nomor 34 Tahun 2007 tentang Pedoman Teknis Penyelenggaraan Pelayanan Pemadam Kebakaran Daerah.</li>
+                    <li>Peraturan Daerah Nomor 1 Tahun 2012 tentang Pencegahan dan Penanggulangan Bahaya Kebakaran.</li>
+                    <li>Peraturan Bupati Muna Nomor 30 Tahun 2022 tentang Organisasi dan Tata Kerja Dinas Pemadam Kebakaran dan Penyelamatan Kabupaten Muna.</li>
+                    <li>Peraturan Bupati Muna Nomor 20 Tahun 2023 tentang Standar Kompetensi Jabatan Aparatur Sipil Negara di Lingkungan Dinas Pemadam Kebakaran dan Penyelamatan Kabupaten Muna.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white shadow-inner rounded-t-lg mt-8 py-6 text-center text-sm">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Dinas Pemadam Kebakaran. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Fungsi untuk mengaktifkan tampilan konten yang dipilih
+        function showContent(targetId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const activeSection = document.getElementById(targetId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+        }
+    
+        // Tambahkan event listener untuk tautan navigasi
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const targetId = event.currentTarget.getAttribute('href').substring(1);
+                    showContent(targetId);
+    
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.style.display === 'block') {
+                        mobileMenu.style.display = 'none';
+                    }
+                });
+            });
+            // Tampilkan halaman Beranda secara default saat dimuat
+            showContent('beranda');
+        });
+    
+        // Logika untuk tombol menu mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                mobileMenu.style.display = 'block';
+            } else {
+                mobileMenu.style.display = 'none';
+            }
+        });
+    </script>
+    
+    <script>
+        // THREE.js untuk latar belakang 3D
+        window.onload = function() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('bg-canvas'),
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // Tambahkan partikel api
+            const particleGeometry = new THREE.BufferGeometry();
+            const particleCount = 1000;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+
+            for (let i = 0; i < particleCount; i++) {
+                // Posisi awal partikel
+                positions[i * 3 + 0] = (Math.random() - 0.5) * 50;
+                positions[i * 3 + 1] = Math.random() * 20;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+
+                // Warna partikel (oranye ke merah)
+                const hue = Math.random() * 0.1 + 0.05; // Oranye-merah
+                const saturation = Math.random() * 0.5 + 0.5;
+                const lightness = Math.random() * 0.5 + 0.5;
+                const color = new THREE.Color().setHSL(hue, saturation, lightness);
+                colors[i * 3 + 0] = color.r;
+                colors[i * 3 + 1] = color.g;
+                colors[i * 3 + 2] = color.b;
+
+                // Ukuran partikel
+                sizes[i] = Math.random() * 1.5 + 0.5;
+            }
+
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 1,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+
+            camera.position.z = 25;
+
+            // Animasi
+            const animate = function() {
+                requestAnimationFrame(animate);
+
+                // Gerakkan partikel
+                const positions = particleGeometry.attributes.position.array;
+                const sizes = particleGeometry.attributes.size.array;
+                for (let i = 0; i < particleCount; i++) {
+                    positions[i * 3 + 1] += 0.05;
+                    if (positions[i * 3 + 1] > 20) {
+                        positions[i * 3 + 1] = 0;
+                        positions[i * 3 + 0] = (Math.random() - 0.5) * 50;
+                        positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+                    }
+                }
+                particleGeometry.attributes.position.needsUpdate = true;
+                
+                // Rotasi partikel
+                particles.rotation.y += 0.001;
+
+                renderer.render(scene, camera);
+            };
+
+            animate();
+
+            // Responsif terhadap ukuran jendela
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+    </script>
+</body>
+</html>
